@@ -1,8 +1,9 @@
 ---
-
+import { CONTACT_INFO } from "../../../utils/constants";
+import ContainerSection from "../../ui/ContainerSection.astro";
 ---
 
-<section id="contacto" class="py-20 bg-white">
+<ContainerSection id="contacto">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -113,9 +114,9 @@
               </div>
               <div class="ml-4">
                 <h4 class="text-lg font-semibold text-gray-900">Teléfono</h4>
-                <p class="text-gray-600">11-2506-0222</p>
+                <p class="text-gray-600">{CONTACT_INFO.telefono}</p>
                 <a
-                  href="tel:+5491125060222"
+                  href={`tel:+${CONTACT_INFO.telefono}`}
                   class="text-primary-600 hover:text-primary-700 text-sm font-medium"
                 >
                   Llamar ahora
@@ -145,9 +146,9 @@
               </div>
               <div class="ml-4">
                 <h4 class="text-lg font-semibold text-gray-900">Email</h4>
-                <p class="text-gray-600">econtableak@gmail.com</p>
+                <p class="text-gray-600">{CONTACT_INFO.email}</p>
                 <a
-                  href="mailto:econtableak@gmail.com"
+                  href={`mailto:${CONTACT_INFO.email}`}
                   class="text-primary-600 hover:text-primary-700 text-sm font-medium"
                 >
                   Enviar email
@@ -189,4 +190,4 @@
       </div>
     </div>
   </div>
-</section>
+</ContainerSection>

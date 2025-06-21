@@ -1,4 +1,6 @@
 ---
+import Header from "../components/ui/Header.astro";
+import ContainerPage from "../components/ui/ContainerPage.astro";
 import "../globals.css";
 
 export interface Props {
@@ -21,8 +23,21 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-50">
-    <slot />
+  <body class="bg-gray-50 overflow-x-hidden">
+    <!-- fondo decorativo -->
+    <div
+      class="absolute inset-0 h-screen bg-gradient-to-br from-white-50 to-white"
+    >
+      <img
+        class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-10"
+        src="/fondo1.jpeg"
+        alt="Carmen Acosta"
+      />
+    </div>
+    <ContainerPage>
+      <Header />
+      <slot />
+    </ContainerPage>
 
     <!-- WhatsApp Float Button -->
     <a

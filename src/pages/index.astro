@@ -1,9 +1,9 @@
 ---
-import About from "../components/About.astro";
-import Contact from "../components/Contact.astro";
-import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
-import Services from "../components/Services.astro";
+import About from "../components/sections/about/About.astro";
+import Contact from "../components/sections/contact/Contact.astro";
+import Hero from "../components/sections/hero/Hero.astro";
+import Pasos from "../components/Pasos.astro";
+import Services from "../components/sections/services/Services.astro";
 import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -11,9 +11,9 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Carmen Acosta">
-  <Header />
   <Hero />
   <Services />
+  <Pasos />
   <About />
   <Contact />
 </Layout>
