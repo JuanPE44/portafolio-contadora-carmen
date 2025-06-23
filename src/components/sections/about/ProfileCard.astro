@@ -1,0 +1,40 @@
+---
+import IconCheck from '../../../Icons/IconCheck.astro';
+
+interface Props {
+  imageUrl: string;
+  name: string;
+  title: string;
+  description: string;
+  workModalities: string[];
+}
+const { imageUrl, name, title, description, workModalities } = Astro.props;
+---
+<div class="relative">
+  <div class="bg-white rounded-2xl shadow-xl p-8">
+    <div class="text-center mb-6">
+      <img
+        class="w-24 h-24 object-cover rounded-full mx-auto"
+        src={imageUrl}
+        alt={name}
+      />
+      <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">{name}</h3>
+      <p class="text-secondary font-semibold mb-4">{title}</p>
+      <p class="text-gray-600 leading-relaxed">{description}</p>
+    </div>
+
+    <div class="border-t pt-6">
+      <h4 class="font-semibold text-gray-900 mb-4">
+        Modalidad de Trabajo
+      </h4>
+      <div class="space-y-3">
+        {workModalities.map((item) => (
+          <div class="flex items-center text-sm text-gray-600">
+            <IconCheck className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

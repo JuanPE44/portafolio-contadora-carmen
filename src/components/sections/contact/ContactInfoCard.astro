@@ -1,0 +1,31 @@
+---
+import ContactDetailItem from "./ContactDetailItem.astro";
+import IconPhone from "../../../Icons/IconPhone.astro"
+import IconEmail from "../../../Icons/IconEmail.astro"
+import IconWhatsApp from "../../../Icons/IconWhatsApp.astro";
+
+interface Props {
+  phone: string;
+  email: string;
+  whatsapp: string;
+}
+const { phone, email, whatsapp } = Astro.props;
+---
+<div class="bg-primary-50 rounded-xl p-8 space-y-8">
+  <h3 class="text-xl font-semibold text-gray-900">
+    Información de Contacto
+  </h3>
+  <div class="space-y-6">
+    <ContactDetailItem title="Teléfono" value={phone} actionText="Llamar ahora" actionLink={`tel:+${phone}`}>
+      <IconPhone slot="icon" className="w-5 h-5 text-primary-600" />
+    </ContactDetailItem>
+
+    <ContactDetailItem title="Email" value={email} actionText="Enviar email" actionLink={`mailto:${email}`}>
+      <IconEmail slot="icon" className="w-5 h-5 text-primary-600" />
+    </ContactDetailItem>
+
+    <ContactDetailItem title="WhatsApp" value={whatsapp} actionText="Enviar mensaje" actionLink={`https://wa.me/${whatsapp}`}>
+      <IconWhatsApp slot="icon" className="w-5 h-5 text-green-600" iconBg="bg-green-100" />
+    </ContactDetailItem>
+  </div>
+</div>

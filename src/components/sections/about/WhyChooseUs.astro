@@ -1,0 +1,45 @@
+---
+import FeatureItem from './FeatureItem.astro';
+import IconCheckCircle from '../../../Icons/IconCheckCircle.astro';
+import IconChat from '../../../Icons/IconChat.astro';
+import IconZap from '../../../Icons/IconZap.astro';
+import IconShield from '../../../Icons/IconShield.astro';
+
+interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+interface Props {
+  features: Feature[];
+}
+const { features } = Astro.props;
+
+// Un mapa para asociar el nombre del icono con su componente
+const icons = {
+  IconCheckCircle,
+  IconChat,
+  IconZap,
+  IconShield,
+};
+---
+<div class="mb-8 lg:mb-0">
+  <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+    ¿Por qué elegirnos?
+  </h2>
+  <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+    Somos un estudio contable online que se especializa en brindar
+    servicios de calidad a distancia de forma simple, cómoda y
+    completamente digital.
+  </p>
+  <div class="space-y-6">
+    {features.map(feature => {
+      const IconComponent = icons[feature.icon];
+      return (
+        <FeatureItem title={feature.title} description={feature.description}>
+          <IconComponent slot="icon" className="w-5 h-5 text-primary-600" />
+        </FeatureItem>
+      )
+    })}
+  </div>
+</div>

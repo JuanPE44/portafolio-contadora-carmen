@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  value: string;
+  actionText: string;
+  actionLink: string;
+  className?: string;
+  iconBg?: string;
+}
+const { title, value, actionText, actionLink, className,  iconBg = 'bg-primary-100' } = Astro.props;
+const { } = Astro.props; // Color de fondo por defecto
+---
+<div class:list={["flex items-start", className]}>
+  <div class="flex-shrink-0">
+    <div class:list={["w-10 h-10 rounded-lg flex items-center justify-center", iconBg]}>
+      <slot name="icon" />
+    </div>
+  </div>
+  <div class="ml-4">
+    <h4 class="text-lg font-semibold text-gray-900">{title}</h4>
+    <p class="text-gray-600">{value}</p>
+    <a href={actionLink} target="_blank" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+      {actionText}
+    </a>
+  </div>
+</div>

@@ -67,14 +67,14 @@ const pasos = [
         {pasos.map((paso, index) => (
           <div class="relative flex flex-col items-center text-center">
             <!-- Círculo con número -->
-            <div class="relative z-10 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold mb-4 shadow-lg">
+            <div class="relative z-10 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-lg font-bold mb-4 shadow-lg">
               {paso.numero}
             </div>
             
             <!-- Icono -->
             <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
               <svg
-                class="w-6 h-6 text-blue-600"
+                class="w-6 h-6 text-primary"
                 fill="none"
                 stroke="currentColor"
                 viewBox={paso.icono.viewBox}
@@ -127,7 +127,7 @@ const pasos = [
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
           href="mailto:contacto@ejemplo.com"
-          class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+          class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-blue-700 transition-colors"
         >
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
