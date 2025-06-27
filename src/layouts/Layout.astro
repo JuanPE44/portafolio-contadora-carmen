@@ -26,25 +26,20 @@ const {
   <body class="bg-gray-50 overflow-x-hidden">
     <!-- fondo decorativo -->
     <div
-      class="absolute inset-0 h-screen bg-gradient-to-br from-white-50 to-white"
+      class="absolute inset-0 h-screen bg-zinc-800"
     >
       <img
-        class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-10"
-        src="/fondo1.jpeg"
+        class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-70"
+        src="/fondo2.jpg"
         alt="Carmen Acosta"
       />
     </div>
     <ContainerPage>
-      <Header />
-      <slot />
-    </ContainerPage>
-
-    <!-- WhatsApp Float Button -->
-    <a
+       <a
       href="https://wa.me/5491125060222"
       target="_blank"
       rel="noopener noreferrer"
-      class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
+      class="fixed bottom-6 right-32 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
       aria-label="Contactar por WhatsApp"
     >
       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -53,5 +48,11 @@ const {
         ></path>
       </svg>
     </a>
+      <Header />
+      <slot />
+       <!-- WhatsApp Float Button -->
+    </ContainerPage>
+
+   
   </body>
 </html>

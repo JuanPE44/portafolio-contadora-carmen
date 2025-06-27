@@ -2,7 +2,7 @@
 
 @theme {
   --color-primary: #3D5A80;
-  --color-secondary: #80683D;
+  --color-secondary: #3D807B;
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
   --color-primary-500: #3b82f6;
@@ -10,3 +10,7 @@
   --color-primary-700: #1d4ed8;
   --color-primary-900: #1e3a8a;
 }
+/*
+#3D807B turquesa
+#805F3D marrin
+*/

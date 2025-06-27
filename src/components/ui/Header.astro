@@ -3,10 +3,11 @@
 ---
 
 <header
-  class="bg-white shadow-sm fixed w-full top-0 z-40 max-w-6xl 2xl:max-w-6xl px-4 sm:mx-auto left-1/2 -translate-x-1/2 top"
+  id="header-desktop"
+  class="bg-white shadow-sm fixed w-full rounded-2xl top-4 z-40 max-w-6xl 2xl:max-w-6xl px-4 sm:mx-auto left-1/2 -translate-x-1/2 top"
 >
   <nav class="mx-auto">
-    <div class="flex justify-between items-center py-4">
+    <div class="flex justify-between items-center py-2">
       <div class="flex gap-1 items-center">
         <div class="border-b-4 border-gray-600">
           <svg width="35" height="35" viewBox="0 0 18 16" class="fill-gray-600"
@@ -105,4 +106,23 @@
   mobileMenuButton?.addEventListener("click", () => {
     mobileMenu?.classList.toggle("hidden");
   });
+
+ const handleScroll = () => {
+  const element = document.getElementById("header-desktop");
+  if (!element) return;
+
+  const scrollY = window.scrollY;
+  const maxScroll = 100; // A partir de cuánto scroll desaparece el espacio
+  const initialTop = 16; // Espacio inicial en px
+
+  // Calculamos el nuevo top reduciendo el espacio
+  const newTop = Math.max(0, initialTop - (scrollY * initialTop) / maxScroll);
+
+  element.style.top = `${newTop}px`;
+  element.style.transition = "top 0.2s ease-out";
+};
+
+if (typeof window !== "undefined") {
+  window.addEventListener("scroll", handleScroll);
+}
 </script>
