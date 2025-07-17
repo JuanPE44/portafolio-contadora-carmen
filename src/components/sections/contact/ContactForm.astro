@@ -1,48 +1,216 @@
 ---
-interface Props {
-  whatsappNumber: string;
-}
-const { whatsappNumber } = Astro.props;
+import Input from "../../ui/Input.astro"
 ---
-<div class="bg-gray-50 rounded-xl p-8">
-  <h3 class="text-xl font-semibold text-gray-900 mb-6">
-    Envíanos un mensaje
+
+<form
+  id="contact-form"
+  method="POST"
+  class="relative p-8 md:p-10  shadow-sm bg-white rounded-xl max-w-lg mx-auto"
+>
+  </div>
+
+  <h3 class="text-zinc-950 text-2xl font-bold mb-6 text-center">
+    Envíame un mensaje
   </h3>
-  <form id="contact-form" class="space-y-6">
-    <div>
-      <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
-      <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="Tu nombre completo"/>
+
+  <!-- Mensajes -->
+  <div
+    id="success-message"
+    class="hidden bg-gradient-to-r from-primary  to-primary border border-primary  text-primary  p-4 rounded-xl mb-4 animate-fade-in"
+  >
+    <div class="flex items-center gap-3">
+      <svg
+        class="text-primary  flex-shrink-0"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        ><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline
+          points="22,4 12,14.01 9,11.01"></polyline></svg
+      >
+      <div>
+        <p class="font-semibold">¡Mensaje enviado correctamente!</p>
+        <p class="text-sm  text-zinc-900/80">
+          Te responderé a la brevedad. Gracias por contactarme.
+        </p>
+      </div>
     </div>
+  </div>
 
-    <div>
-      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-      <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors" placeholder="tu@email.com"/>
+  <div
+    id="error-message"
+    class="hidden bg-gradient-to-r from-red-500/20 to-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl mb-4 animate-fade-in"
+  >
+    <div class="flex items-center gap-3">
+      <svg
+        class="text-red-400 flex-shrink-0"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        ><circle cx="12" cy="12" r="10"></circle><line
+          x1="15"
+          y1="9"
+          x2="9"
+          y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg
+      >
+      <div>
+        <p class="font-semibold">Error al enviar el mensaje</p>
+        <p class="text-sm text-red-400/80">
+          Por favor, intenta nuevamente o contáctame por WhatsApp.
+        </p>
+      </div>
     </div>
+  </div>
 
-    <div>
-      <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mensaje</label>
-      <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors resize-none" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+  <div
+    id="loading-message"
+    class="hidden bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 text-primary p-4 rounded-xl mb-4 animate-pulse"
+  >
+    <div class="flex items-center gap-3">
+      <svg
+        class="text-primary animate-spin flex-shrink-0"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"><path d="M21 12a9 9 0 11-6.219-8.56"></path></svg
+      >
+      <p class="font-semibold">Enviando mensaje...</p>
     </div>
+  </div>
 
-    <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary-700 transition-colors">
-      Enviar Consulta por WhatsApp
-    </button>
-  </form>
-</div>
+  <!-- Hidden inputs -->
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="hidden" name="_template" value="table" />
 
-<script define:vars={{ whatsappNumber }}>
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+  <!-- Campos del formulario -->
+  <div class="space-y-4">
+    <Input name="name" type="text" placeholder="Tu nombre completo" />
+    <Input name="email" type="email" placeholder="Tu correo electrónico" />
+  </div>
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+  <textarea
+    name="message"
+    required
+    placeholder="Contame sobre tu proyecto..."
+    rows="5"
+    class="w-full text-zinc-900 border border-zinc-400/50 bg-zinc-100 rounded-xl py-3 px-4 mt-4 focus:outline-none focus:ring-2 focus:ring-primary  focus:border-transparent resize-none"
+  ></textarea>
+  <button
+    type="submit"
+    id="submit-button"
+    class="w-full bg-primary text-white cursor-pointer text-bg font-bold py-3 px-4 rounded-xl mt-6 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+  >
+    <span id="button-text">Enviar mensaje</span>
+  </button>
+</form>
 
-    const whatsappMessage = `¡Hola! 👋\n\n*Nombre:* ${name}\n*Email:* ${email}\n\n*Consulta:*\n${message}`;
-    const encodedMessage = encodeURIComponent(whatsappMessage);
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("contact-form");
+    const submitButton = document.getElementById("submit-button");
+    const buttonText = document.getElementById("button-text");
+    const successMessage = document.getElementById("success-message");
+    const errorMessage = document.getElementById("error-message");
+    const loadingMessage = document.getElementById("loading-message");
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    const showMessage = (element, duration = 6000) => {
+      element?.classList.remove("hidden");
+      setTimeout(() => {
+        element?.classList.add("hidden");
+      }, duration);
+    };
 
-    window.open(whatsappUrl, '_blank');
+    const hideAllMessages = () => {
+      successMessage?.classList.add("hidden");
+      errorMessage?.classList.add("hidden");
+      loadingMessage?.classList.add("hidden");
+    };
+ 
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      hideAllMessages();
+      showMessage(loadingMessage);
+      submitButton.disabled = true;
+      buttonText.textContent = "Enviando...";
+
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      };
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        loadingMessage?.classList.add("hidden");
+
+        if (res.ok) {
+          showMessage(successMessage, 8000);
+          form.reset();
+        } else {
+          throw new Error("Error al enviar el formulario");
+        }
+      } catch (err) {
+        loadingMessage?.classList.add("hidden");
+        showMessage(errorMessage, 8000);
+        console.error(err);
+      } finally {
+        submitButton.disabled = false;
+        buttonText.textContent = "Enviar mensaje";
+      }
+    });
+
+    // Validación visual
+    const inputs = form.querySelectorAll("input[required], textarea[required]");
+    inputs.forEach((input) => {
+      input.addEventListener("invalid", (e) => {
+        e.preventDefault();
+        const target = e.target;
+        target.classList.add("border-red-500");
+        target.addEventListener(
+          "input",
+          () => {
+            target.classList.remove("border-red-500");
+          },
+          { once: true }
+        );
+      });
+    });
   });
 </script>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+</style>

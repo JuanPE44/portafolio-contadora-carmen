@@ -1,6 +1,5 @@
 ---
 import ContactDetailItem from "./ContactDetailItem.astro";
-import IconPhone from "../../../Icons/IconPhone.astro"
 import IconEmail from "../../../Icons/IconEmail.astro"
 import IconWhatsApp from "../../../Icons/IconWhatsApp.astro";
 
@@ -16,9 +15,7 @@ const { phone, email, whatsapp } = Astro.props;
     Información de Contacto
   </h3>
   <div class="space-y-6">
-    <ContactDetailItem title="Teléfono" value={phone} actionText="Llamar ahora" actionLink={`tel:+${phone}`}>
-      <IconPhone slot="icon" className="w-5 h-5 text-primary-600" />
-    </ContactDetailItem>
+   
 
     <ContactDetailItem title="Email" value={email} actionText="Enviar email" actionLink={`mailto:${email}`}>
       <IconEmail slot="icon" className="w-5 h-5 text-primary-600" />

@@ -6,6 +6,6 @@ interface Props {
 const { id, className = "py-20 md:py-28" } = Astro.props;
 ---
 
-<section id={id} class={`relative w-full md:min-h-screen ${className}`}>
+<section id={id} class={` w-full md:min-h-screen max-w-6xl 2xl:max-w-6xl px-4 sm:px-10 md:px-12 lg:px-0 sm:mx-auto relative overflow-x-hidden lg:overflow-x-visible ${className}`}>
   <slot />
 </section>
