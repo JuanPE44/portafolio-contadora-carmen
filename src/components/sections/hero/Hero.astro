@@ -8,7 +8,7 @@ import BenefitsList from "./BenefitsList.astro";
 import ProfileCard from "./ProfileCard.astro";
 ---
 
-<main class="relative">
+<main class="relative flex justify-center">
   <div class="absolute inset-0 min-h-screen h-full bg-zinc-200">
     <img
       class="absolute inset-0 w-full h-full object-cover mix-blend-multiply opacity-5"
@@ -16,11 +16,13 @@ import ProfileCard from "./ProfileCard.astro";
       alt="Carmen Acosta"
     />
   </div>
-  <a
+ 
+  <ContainerSection id="inicio" >
+     <a
     href="https://wa.me/542494521903"
     target="_blank"
     rel="noopener noreferrer"
-    class="fixed bottom-6 right-32 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
+    class="fixed bottom-6 right-4 sm:right-10 md:right-14 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
     aria-label="Contactar por WhatsApp"
   >
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -29,7 +31,6 @@ import ProfileCard from "./ProfileCard.astro";
       ></path>
     </svg>
   </a>
-  <ContainerSection id="inicio" >
       <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full">
         <div class="text-center lg:text-left">
           <HeroContent
